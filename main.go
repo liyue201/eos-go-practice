@@ -8,12 +8,22 @@ import (
 	"github.com/eoscanada/eos-go/token"
 )
 
+
+//const (
+//	bpUrl       = "https://mainnet.eoscanada.com"
+//	ChainID     = "aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906"
+//	AccountFrom = ""
+//	PrivateKey  = ""
+//	AccountTo   = "gooooooooooe"
+//)
+
+
 const (
-	bpUrl          = "https://mainnet.eoscanada.com"
-	MainNetChainID = "aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906"
-	AccountFrom    = ""
-	PrivateKey     = ""
-	AccountTo      = "gooooooooooe"
+	bpUrl       = "http://kylin.fn.eosbixin.com"
+	ChainID     = "5fff1dae8dc8e2fc4d5b23b2c7665c97f9e9d8edf2b6485a86ba311c25639191"
+	AccountFrom = "njiodidididq"
+	PrivateKey  = "5JMNzwAtgvUn4zah1t1twGzCjazupARV57h3MGVCHDpHAQEQ7hF"
+	AccountTo   = "haienfhaidqg"
 )
 
 func printJson(v interface{}) {
@@ -35,7 +45,7 @@ func testTransfer() {
 	fmt.Printf("chan_info:\n")
 	printJson(info)
 
-	if hex.EncodeToString(info.ChainID) != MainNetChainID {
+	if hex.EncodeToString(info.ChainID) != ChainID {
 		fmt.Println("%v not mainnet chain", hex.EncodeToString(info.ChainID))
 		return
 	}
@@ -44,7 +54,7 @@ func testTransfer() {
 	keybag.ImportPrivateKey(PrivateKey)
 	api.SetSigner(keybag)
 
-	assert, _ := eos.NewAsset("0.0001 EOS")
+	assert, _ := eos.NewAsset("1.0000 EOS")
 	action := token.NewTransfer(AccountFrom, AccountTo, assert, "test")
 	actions := []*eos.Action{}
 	actions = append(actions, action)
